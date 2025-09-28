@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct PixelArtMoodView: View {
     let onSave: (UIImage) -> Void
@@ -12,7 +13,16 @@ struct PixelArtMoodView: View {
     @State private var backgroundColor: Color = .white
     @State private var showGrid: Bool = true
 
-    private let palette: [Color] = [.black, .gray, .white, .red, .orange, .yellow, .green, .mint, .teal, .blue, .indigo, .purple, .pink, .brown]
+    private let palette: [Color] = [
+        Color(red: 29/255, green: 29/255, blue: 27/255),   // Muted Black
+        Color(red: 234/255, green: 193/255, blue: 25/255), // Mustard Yellow
+        Color(red: 128/255, green: 139/255, blue: 197/255),// Lavander
+        Color(red: 234/255, green: 167/255, blue: 199/255),// Pink Quartz
+        Color(red: 158/255, green: 214/255, blue: 223/255),// Sky
+        Color(red: 36/255, green: 94/255, blue: 85/255),   // Tea
+        Color(red: 237/255, green: 119/255, blue: 60/255), // Tangerine
+        Color(red: 198/255, green: 63/255, blue: 62/255),  // Red Passion
+    ]
 
     init(onSave: @escaping (UIImage) -> Void) {
         self.onSave = onSave
@@ -25,7 +35,7 @@ struct PixelArtMoodView: View {
                 paletteView
             }
             .padding()
-            .navigationTitle("Draw your mood")
+            .navigationTitle("create your own")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -56,7 +66,7 @@ struct PixelArtMoodView: View {
                 ForEach(0..<gridSize, id: \.self) { y in
                     ForEach(0..<gridSize, id: \.self) { x in
                         let color = pixels[y][x]
-                        if color.opacity > 0 { // skip clear
+                        if UIColor(color).cgColor.alpha > 0 { // skip clear
                             Rectangle()
                                 .fill(color)
                                 .frame(width: cell, height: cell)
@@ -92,7 +102,7 @@ struct PixelArtMoodView: View {
             )
         }
         .aspectRatio(1, contentMode: .fit)
-        .background(RoundedRectangle(cornerRadius: 12).stroke(Color.blue.opacity(0.3)))
+        .background(Rectangle().stroke(Color.blue, lineWidth: 5))
     }
 
     private var paletteView: some View {
@@ -101,11 +111,12 @@ struct PixelArtMoodView: View {
                 HStack(spacing: 12) {
                     ForEach(palette.indices, id: \.self) { idx in
                         let color = palette[idx]
-                        Circle()
+                        Rectangle()
                             .fill(color)
                             .frame(width: 32, height: 32)
                             .overlay(
-                                Circle().stroke(Color.blue, lineWidth: selectedColor == color ? 3 : 1)
+                                Rectangle()
+                                    .stroke(Color.blue, lineWidth: selectedColor == color ? 3 : 0)
                             )
                             .onTapGesture { selectedColor = color }
                     }

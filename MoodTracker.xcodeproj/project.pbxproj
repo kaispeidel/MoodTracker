@@ -29,20 +29,23 @@
 		A479DD0F2E80CBC5008FDD0E /* MoodTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoodTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A414CD8E2E822CA600A64A01 /* Exceptions for "MoodTracker" folder in "MoodTracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A479DCF72E80CBC1008FDD0E /* MoodTracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A479DCFA2E80CBC1008FDD0E /* MoodTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A414CD8E2E822CA600A64A01 /* Exceptions for "MoodTracker" folder in "MoodTracker" target */,
+			);
 			path = MoodTracker;
-			sourceTree = "<group>";
-		};
-		A479DD082E80CBC5008FDD0E /* MoodTrackerTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MoodTrackerTests;
-			sourceTree = "<group>";
-		};
-		A479DD122E80CBC5008FDD0E /* MoodTrackerUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MoodTrackerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -76,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				A479DCFA2E80CBC1008FDD0E /* MoodTracker */,
-				A479DD082E80CBC5008FDD0E /* MoodTrackerTests */,
-				A479DD122E80CBC5008FDD0E /* MoodTrackerUITests */,
 				A479DCF92E80CBC1008FDD0E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +131,6 @@
 			dependencies = (
 				A479DD072E80CBC5008FDD0E /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				A479DD082E80CBC5008FDD0E /* MoodTrackerTests */,
-			);
 			name = MoodTrackerTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +150,6 @@
 			);
 			dependencies = (
 				A479DD112E80CBC5008FDD0E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				A479DD122E80CBC5008FDD0E /* MoodTrackerUITests */,
 			);
 			name = MoodTrackerUITests;
 			packageProductDependencies = (
@@ -397,6 +392,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -410,6 +406,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kai.MoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -428,6 +427,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MoodTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -441,6 +441,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kai.MoodTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
