@@ -7,12 +7,22 @@
 import SwiftUI
 
 struct HomeView: View {
+    @AppStorage("appAppearance") private var appAppearance: String = "system"
+
+    private var selectedScheme: ColorScheme? {
+        switch appAppearance {
+        case "light": return .light
+        case "dark": return .dark
+        default: return nil // system
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 // Subtle gradient background instead of pure white
                 LinearGradient(
-                    colors: [Color.white, Color.blue.opacity(0.02)],
+                    colors: [Color(.systemBackground), Color.blue.opacity(0.02)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -34,17 +44,30 @@ struct HomeView: View {
                     
                     // Main content area - reserved space for animated character
                     VStack(spacing: 30) {
-                        // Reserved space for animated character
-                        Rectangle()
-                            .fill(Color.blue.opacity(0.05))
-                            .frame(width: 200, height: 160)
-                            .cornerRadius(20)
-                            .overlay(
-                                Text("Animated Character\nComing Soon")
-                                    .font(.custom("Matrix Sans Print", size: 12))
+                        // Replaced Rectangle with meditation image styled container
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.blue.opacity(0.05))
+                                .frame(width: 150, height: 200)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.blue.opacity(0.1), lineWidth: 2)
+                                )
+
+                            if let _ = UIImage(named: "meditation") {
+                                Image("meditation")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 200, height: 200)
+                                    .opacity(0.95)
+                            } else {
+                                Image(systemName: "paintpalette")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 80)
                                     .foregroundColor(.blue.opacity(0.4))
-                                    .multilineTextAlignment(.center)
-                            )
+                            }
+                        }
                         
                         // Button container with card-like styling
                         VStack(spacing: 20) {
@@ -98,8 +121,16 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gearshape")
+                        .foregroundColor(.blue)
+                }
+            }
+        }
         .toolbar(.hidden, for: .navigationBar)
-        .preferredColorScheme(.light)
+        .preferredColorScheme(selectedScheme)
     }
 }
 
@@ -114,7 +145,7 @@ struct EnhancedPixelButton: View {
         ZStack {
             // Button background with subtle depth
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
+                .fill(Color(.systemBackground))
                 .frame(width: width, height: height)
                 .shadow(color: .blue.opacity(0.1), radius: 8, x: 0, y: 4)
                 .overlay(

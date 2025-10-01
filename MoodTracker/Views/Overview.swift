@@ -30,7 +30,7 @@ struct OverviewView: View {
         ZStack {
             // Subtle gradient background
             LinearGradient(
-                colors: [Color.white, Color.blue.opacity(0.015)],
+                colors: [Color(.systemBackground), Color.blue.opacity(0.015)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -73,7 +73,6 @@ struct OverviewView: View {
                 }
             }
         }
-        .preferredColorScheme(.light)
         .sheet(isPresented: $showingMoodDetail) {
             if let selectedDate = selectedDate {
                 MoodDetailSheet(date: selectedDate, mood: getMoodForDate(selectedDate))

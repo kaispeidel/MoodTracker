@@ -8,9 +8,12 @@ import SwiftUI
 
 @main
 struct MoodTrackerApp: App {
+    @AppStorage("appAppearance") private var appAppearanceRaw: String = AppAppearance.system.rawValue
+
     var body: some Scene {
         WindowGroup {
-            HomeView() // or HomeView()
+            HomeView()
+                .applyPreferredColorScheme(AppAppearance(rawValue: appAppearanceRaw) ?? .system)
         }
     }
 }

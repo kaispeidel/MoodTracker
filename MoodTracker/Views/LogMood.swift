@@ -7,15 +7,15 @@ struct LogMoodView: View {
     @State private var isPresentingPixelArt = false
     
     private let moodOptions = [
-        "happy", "sad", "angry", "excited",
-        "calm", "anxious", "tired", "energetic", "own"
+        "grounded", "sad", "angry", "connected",
+        "lucky", "love", "chaos", "grateful", "own"
     ]
     
     private let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            Color(.systemBackground).ignoresSafeArea()
             
             ScrollView {
                 VStack(spacing: 30) {
@@ -77,6 +77,9 @@ struct LogMoodView: View {
                                             if mood.lowercased() == "own", let custom = loadCustomMoodImage(for: selectedDate) {
                                                 Image(uiImage: custom)
                                                     .resizable()
+                                            } else if mood.lowercased() == "own" {
+                                                Image("meditation")
+                                                    .resizable()
                                             } else if UIImage(named: mood) != nil {
                                                 Image(mood)
                                                     .resizable()
@@ -114,6 +117,9 @@ struct LogMoodView: View {
                                     if currentMood.lowercased() == "own", let custom = loadCustomMoodImage(for: selectedDate) {
                                         Image(uiImage: custom)
                                             .resizable()
+                                    } else if currentMood.lowercased() == "own" {
+                                        Image("meditation")
+                                            .resizable()
                                     } else if UIImage(named: currentMood) != nil {
                                         Image(currentMood)
                                             .resizable()
@@ -139,7 +145,6 @@ struct LogMoodView: View {
                 }
             }
         }
-        .preferredColorScheme(.light)
         .onAppear {
             loadMoodForSelectedDate()
         }
